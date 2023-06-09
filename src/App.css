@@ -11,13 +11,29 @@ body {
   justify-content: space-between;
 }
 
-.card {
-  flex-basis: calc(50% - 10px);
-  /* 10px is the total margin space between cards */
+.smallCard {
+  flex-basis: calc(50% - 20px);
+  /* 20px is the total margin space between cards */
   margin-bottom: 20px;
-  /* other card styles */
+  border: 5px solid #0068096f;
 }
 
+.bigCard {
+  display: none;
+  position: relative;
+  border: 5px solid #0068096f;
+
+}
+
+.bigCardSelected {
+  display: block;
+  position: fixed;
+  background-color: cornflowerblue;
+  top: 10vh;
+  left: 10vw;
+  height: 80vh;
+  width: 80vw;
+}
 
 a {
   color: #2a85a1;

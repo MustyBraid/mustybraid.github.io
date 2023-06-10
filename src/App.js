@@ -35,8 +35,6 @@ function App () {
         <div className='cardContainer'>
           {cards}
         </div>
-        <div className="closeButtonDiv" onClick={unselectCards}>
-        </div>
       </main>
       <footer>
         <p>Some text here</p>

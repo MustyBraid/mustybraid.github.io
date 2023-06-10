@@ -2,24 +2,30 @@ import { useRef } from 'react';
 
 export function ProjectCard({ project }) {
     const bigCard = useRef(null);
+    const closeButton = useRef(null);
 
-    function select() {
+    function select(e) {
+        e.stopPropagation();
         if (bigCard.current.className === "bigCard") {
             bigCard.current.classList.replace("bigCard", "bigCardSelected");
+            closeButton.current.classList.toggle("hide");
         }
     }
 
-    function unselect() {
-        console.log("unselecting: ", bigCard.current);
-        if (bigCard.current.className === "bigCardSelected") {
+    function unselect(e) {
+        e.stopPropagation();
+        // console.log("unselecting: ", bigCard.current);
+        if (bigCard.current.classList.contains("bigCardSelected")) {
             bigCard.current.classList.replace("bigCardSelected", "bigCard");
         }
+        closeButton.current.classList.toggle("hide");
     }
     return (
         <div className="smallCard" onClick={select}>
             <h1>{project.title}</h1>
             <p>{project.description}</p>
-
+            <div ref={closeButton} className="closeButtonDiv hide" onClick={unselect}>
+            </div>
             <div ref={bigCard} className="bigCard">
                 <h1>{project.title}</h1>
                 <p>{project.descriptionLong}</p>

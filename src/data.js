@@ -1,8 +1,8 @@
 const projects = [
-    {title: "First Project", description: "This is the first project", image: "", descriptionLong: "This is the first project, you currently have it selected"},
-    {title: "Second Project", description: "This is the second project", image: "", descriptionLong: "This is the second project, you currently have it selected"},
-    {title: "Third Project", description: "This is the third project", image: "", descriptionLong: "This is the third project, you currently have it selected"},
-    {title: "Fourth Project", description: "This is the fourth project", image: "", descriptionLong: "This is the fourth project, you currently have it selected"},
+    {title: "A New Leaf", description: "A React app that allows users to own and learn about virtual plants", image: "", descriptionLong: "This is the first project, you currently have it selected"},
+    {title: "Rust Maze-Solver", description: "A project that's currently helping me learn Rust, as well as how to integrate multiple languages in one project", image: "", descriptionLong: "This is the second project, you currently have it selected"},
+    {title: "Teambuilder", description: "A tiny, command-line JS project that uses rxjs to implement observables in JS", image: "", descriptionLong: "This is the third project, you currently have it selected"},
+    {title: "ReadME Generator", description: "This project uses Inquirer to take user input and generate  ReadMEs", image: "", descriptionLong: "This is the fourth project, you currently have it selected"},
   ]
   
   const navData = [

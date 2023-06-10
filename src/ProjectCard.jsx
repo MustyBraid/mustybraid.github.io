@@ -27,3 +27,7 @@ export function ProjectCard({ project }) {
         </div>
     )
 }
+
+/* TODO: Figure out to make select and unselect work nicely with React. This may be moving the functions elsewhere, turning them into
+props/states, or a secret third option. The current implementation doesn't seem to be working because we can't call unselect from the
+app (the parent). */

@@ -5,8 +5,6 @@ export function ProjectCard({ project }) {
     const closeButton = useRef(null);
     const smallCard = useRef(null)
 
-
-
     function select(e) {
         e.stopPropagation();
 
@@ -22,7 +20,7 @@ export function ProjectCard({ project }) {
         smallCard.current.classList.toggle("invisible");
         //unhide big card (absolutely positioned where smallcard was)
         bigCard.current.classList.toggle("hide");
-        //background fades in as big card expands
+        //clickable background fades in as big card expands
         closeButton.current.classList.toggle("transparent");
         closeButton.current.classList.toggle("invisible");
         //timeouts separate changes so they transition properly

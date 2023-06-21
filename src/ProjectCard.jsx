@@ -3,37 +3,73 @@ import { useRef } from 'react';
 export function ProjectCard({ project }) {
     const bigCard = useRef(null);
     const closeButton = useRef(null);
+    const smallCard = useRef(null)
+
+
 
     function select(e) {
         e.stopPropagation();
-        if (bigCard.current.className === "bigCard") {
-            bigCard.current.classList.replace("bigCard", "bigCardSelected");
-            closeButton.current.classList.toggle("hide");
-        }
+
+        if (bigCard.current.classList.contains("selected")) return;
+        //get small card bounding rect
+        let coord = smallCard.current.getBoundingClientRect();
+        //give those coordinates to big card
+        bigCard.current.style.left = `${coord.x}px`;
+        bigCard.current.style.top = `${coord.y}px`;
+        bigCard.current.style.height = `${coord.height}px`;
+        bigCard.current.style.width = `${coord.width}px`;
+        //toggle small card visibility off
+        smallCard.current.classList.toggle("invisible");
+        //unhide big card (absolutely positioned where smallcard was)
+        bigCard.current.classList.toggle("hide");
+        //background fades in as big card expands
+        closeButton.current.classList.toggle("transparent");
+        closeButton.current.classList.toggle("invisible");
+        //timeouts separate changes so they transition properly
+        setTimeout(() => {
+            bigCard.current.classList.toggle("selected");
+            bigCard.current.style.left = `10vw`;
+            bigCard.current.style.top = `10vh`;
+            bigCard.current.style.height = `80vh`;
+            bigCard.current.style.width = `80vw`;
+        }, 100);
+
     }
 
     function unselect(e) {
         e.stopPropagation();
-        // console.log("unselecting: ", bigCard.current);
-        if (bigCard.current.classList.contains("bigCardSelected")) {
-            bigCard.current.classList.replace("bigCardSelected", "bigCard");
+
+        if (bigCard.current.classList.contains("selected")) {
+            bigCard.current.classList.toggle("selected")
+            //get small card bounding rect
+            let coord = smallCard.current.getBoundingClientRect();
+            //give those coordinates to big card
+            bigCard.current.style.left = `${coord.x}px`;
+            bigCard.current.style.top = `${coord.y}px`;
+            bigCard.current.style.height = `${coord.height}px`;
+            bigCard.current.style.width = `${coord.width}px`;
+            closeButton.current.classList.toggle("transparent");
+            //timeouts separate changes so they transition properly
+            setTimeout(() => {
+                bigCard.current.classList.toggle("hide");
+                smallCard.current.classList.toggle("invisible");
+                closeButton.current.classList.toggle("invisible");
+            }, 1000);
         }
-        closeButton.current.classList.toggle("hide");
     }
+
     return (
-        <div className="smallCard" onClick={select}>
-            <h1>{project.title}</h1>
-            <p>{project.description}</p>
-            <div ref={closeButton} className="closeButtonDiv hide" onClick={unselect}>
+        <div className='projectCard' onClick={select}>
+            <div ref={smallCard} className="smallCard">
+                <h1>{project.title}</h1>
+                <p>{project.description}</p>
             </div>
-            <div ref={bigCard} className="bigCard">
+            <div ref={closeButton} className="closeButtonDiv transparent invisible" onClick={unselect}>
+            </div>
+            <div ref={bigCard} className="bigCard hide">
                 <h1>{project.title}</h1>
                 <p>{project.descriptionLong}</p>
             </div>
         </div>
     )
 }
-
-/* TODO: Figure out to make select and unselect work nicely with React. This may be moving the functions elsewhere, turning them into
-props/states, or a secret third option. The current implementation doesn't seem to be working because we can't call unselect from the
-app (the parent). */

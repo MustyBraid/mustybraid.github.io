@@ -11,28 +11,30 @@ body {
   justify-content: space-between;
 }
 
-.smallCard {
+.projectCard {
   flex-basis: calc(50% - 20px);
-  /* 20px is the total margin space between cards */
   margin-bottom: 20px;
+}
+
+.smallCard {
   border: 5px solid #0068096f;
 }
 
 .bigCard {
-  display: none;
-  position: relative;
-  border: 5px solid #0068096f;
-}
-
-.bigCardSelected {
-  display: block;
-  position: fixed;
-  background-color: cornflowerblue;
+  position: absolute;
   top: 10vh;
   left: 10vw;
-  height: 80vh;
-  width: 80vw;
+  width: 10px;
+  height: 10px;
+  border: 5px solid #0068096f;
+  transition: all 1s;
+}
+
+.bigCard.selected {
+  position: absolute;
+  background-color: cornflowerblue;
   z-index: 1;
+  transition: all 1s;
 }
 
 .closeButtonDiv {
@@ -44,10 +46,20 @@ body {
   left: 0vw;
   opacity: 0.6;
   z-index: 0;
+  transition: visibility 1s;
+  transition: opacity 1s;
 }
 
 .hide {
   display: none;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.transparent {
+  opacity: 0;
 }
 
 a {

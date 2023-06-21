@@ -25,10 +25,7 @@ body {
 
 .bigCard {
   position: absolute;
-  top: 10vh;
-  left: 10vw;
-  width: 10px;
-  height: 10px;
+  box-sizing: border-box;
   border: 5px solid #0068096f;
   transition: all 1s;
 }

@@ -26,6 +26,7 @@ body {
 .bigCard {
   position: absolute;
   box-sizing: border-box;
+  overflow: hidden;
   border: 5px solid #0068096f;
   transition: all 1s;
 }

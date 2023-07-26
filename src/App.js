@@ -1,7 +1,6 @@
 import './App.css';
 import { projects, navData } from './data';
 import { ProjectCard } from './ProjectCard';
-import { useRef } from 'react';
 
 
 function NavElement ({navDatum}) {
@@ -14,7 +13,22 @@ function NavElement ({navDatum}) {
 
 function App () {
 
-  const cards = projects.map((project) => <ProjectCard key={project.title} project={project} />);
+  const cards = projects.map(
+    (project, index) => {
+      if (projects.length % 2 !== 0) {
+        if (index === projects.length - 1) {
+          return <ProjectCard key={project.title} project={project} isLast={true} />;
+        }
+        else {
+          return <ProjectCard key={project.title} project={project} isLast={false} />
+        }
+      }
+      else {return <ProjectCard key={project.title} project={project} isLast={false} />;
+      }
+    }
+  );
+  
+
   const links = navData.map((navDatum) => <NavElement key={navDatum.title} navDatum={navDatum} />);
 
   function unselectCards () {
@@ -22,7 +36,7 @@ function App () {
   }
 
   return (
-    <div>
+    <>
       <header>
         Casey Chartier
         <nav>
@@ -36,10 +50,7 @@ function App () {
           {cards}
         </div>
       </main>
-      <footer>
-        <p>Some text here</p>
-      </footer>
-    </div>
+    </>
   );
 }
 

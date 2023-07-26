@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 
-export function ProjectCard({ project }) {
+export function ProjectCard({ project, isLast }) {
     const bigCard = useRef(null);
     const closeButton = useRef(null);
     const smallCard = useRef(null)
@@ -57,7 +57,7 @@ export function ProjectCard({ project }) {
     }
 
     return (
-        <div className='projectCard' onClick={select}>
+        <div className='projectCard' style={isLast ? { margin: "0px auto" } : {}} onClick={select}>
             <div ref={smallCard} className="smallCard">
                 <h1>{project.title}</h1>
                 <p>{project.description}</p>
@@ -67,6 +67,7 @@ export function ProjectCard({ project }) {
             <div ref={bigCard} className="bigCard hide">
                 <h1>{project.title}</h1>
                 <p>{project.descriptionLong}</p>
+                <a href={project.link}>View on Github</a>
             </div>
         </div>
     )
